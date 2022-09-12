@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  redisserver:
+    image: redis:5.0.14-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass 22
+  smplapp-srvc-redis:
+    build:
+      context: ./
+      dockerfile: Dockerfile_local
+      target: prod 
+    ports:
+      - "8081:8080"
+      - "5678:5678" 
+    links:
+      - "redisserver:redis"     
+    environment:
+      GUNICORN_CMD_ARGS: "--workers=4 --bind=0.0.0.0:8080 --access-logfile=-"
+      FLASK_APP: "hello_app.webapp"
+      APP_MODULE: "hello_app.webapp"
+      RDS_HOST: "redisserver"
+      RDS_PORT: 6379
+      RDS_PSW: "22"
