@@ -3,22 +3,30 @@
 В якосіт шаблона викорситано [ python-sample-vscode-flask-tutorial](https://github.com/microsoft/python-sample-vscode-flask-tutorial)
 
 
-## Підготовка до запуску локально
+## Запуск локально в режимі PROD
 
-- створити віртуальну environment
-
-```bash
-py -m venv env
-```
-
-- ЗАвантажити потрібні бібліотеки
-
+Запустити cmd
 
 ```bash
-
-py -m pip install -r requirements.txt
-
+sh-composer-up-prod.cmd 
 ```
+
+Сервіс буде доcnупний за адресою http://localhost:8081/
+
+
+
+## Запуск локально в режимі PROD
+
+Запустити cmd
+
+```bash
+sh-composer-up-debug.cmd 
+```
+
+Сервіс буде доcnупний за адресою http://localhost:8081/
+
+
+Переключити visual studio code в режим debug і запустити **Sh-FLASK-Python: Remote Attach**
 
 
 
